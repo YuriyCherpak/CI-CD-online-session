@@ -9,6 +9,7 @@ pipeline {
               python -m venv .venv
               . .venv/bin/activate
               pip install pylint
+              pip install -r requirements.txt
               pylint --exit-zero --report=y --output-format=json:pylint-report.json,colorized ./*.py
               '''
             }
