@@ -32,7 +32,7 @@ pipeline {
           echo 'something went wrong'
         }
         failure {
-          'success'
+          echo 'success'
         }
       }
     }
