@@ -23,7 +23,7 @@ pipeline {
       steps {
         script {
           docker.image("${registry}:${env.BUILD_ID}").withRun('-p 9005:9000') {c ->
-          sh "sleep 5; curl -i http://localhost:9006/test_string"}
+          sh "sleep 5; curl -i http://localhost:9005/test_string"}
         }
 
       }
@@ -45,6 +45,11 @@ pipeline {
           }
         }
 
+      }
+    }
+    stage('Deploy') {
+      steps {
+        sh 'docker stop flask-app || true; docker rm flask-app || true;docker run -d --name flask-app -p 9000:9000 yucherpak/flask-app:latest'
       }
     }
 
