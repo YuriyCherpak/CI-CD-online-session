@@ -12,6 +12,15 @@ pipeline {
               pip install -r requirements.txt
               pylint --exit-zero --report=y --output-format=json:pylint-report.json,colorized ./*.py
               '''
+              publishHTML target : [
+                    allowMissing: true,
+                    alwaysLinkToLastBuild: true,
+                    keepAll: true,
+                    reportDir: './',
+                    reportFiles: 'pylint-report.json',
+                    reportName: 'pylint Scan',
+                    reportTitles: 'pylint Scan'
+                ]
             }
           }
       }
