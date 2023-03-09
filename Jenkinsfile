@@ -27,6 +27,14 @@ pipeline {
         }
 
       }
+      post {
+        success {
+          echo 'something went wrong'
+        }
+        failure {
+          'success'
+        }
+      }
     }
     stage('Publish') {
       steps {
